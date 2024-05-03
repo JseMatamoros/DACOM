@@ -1,0 +1,27 @@
+{% extends 'encuestas/base.html' %}
+
+{% block title %} Agregar Pregunta {% endblock %}
+
+{% block content %}
+<h3 class="text-center" style="font-size: 30px; color: #FFFFFF; text-shadow: 2px 2px 8px #000000; background-color: transparent; padding: 10px; border-radius: 8px;">Agregar nueva pregunta para "{{ encuesta.nombre }}"</h3>
+<div class="container mt-4 p-4 rounded" style="background-color: rgba(192, 192, 192, 0.5); box-shadow: 5px 5px 15px #888888;">
+    <div class="container mt-4 p-4 border border-dark rounded" style="background-color: #c0c0c0; box-shadow: 5px 5px 15px #888888;">
+        <form method="post">
+            {% csrf_token %}
+            {{ pregunta_form.as_p }}
+            {% if pregunta_form.errors %}
+                <div class="alert alert-danger">
+                    {{ pregunta_form.errors }}
+                </div>
+            {% endif %}
+
+            <!-- Puedes agregar más campos o personalización aquí según tus necesidades -->
+
+            <div class="d-flex justify-content-center mt-3">
+                <button id="enviar_encuesta" class="btn btn-primary mr-2 enviar-btn" type="submit">Guardar Pregunta</button>
+                <a id="volver_encuesta" class="btn btn-secondary volver-btn" href="{% url 'editar_encuesta' encuesta_id=encuesta.id %}">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

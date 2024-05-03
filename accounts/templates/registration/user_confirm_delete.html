@@ -1,0 +1,16 @@
+{% extends 'encuestas/base.html' %}
+
+{% block title %} Confirmar Eliminación de Usuario {% endblock %}
+
+{% block content %}
+<div class="container mt-4 p-4 border border-dark rounded" style="background-color: #c0c0c0; box-shadow: 5px 5px 15px #888888;">
+    <h3 class="text-center">Confirmar Eliminación de Usuario</h3>
+    <form method="post">
+        {% csrf_token %}
+        <p>¿Estás seguro de que deseas eliminar al usuario "{{ user.username }}"?</p>
+        {{ form.confirm_delete }}
+        <button type="submit" class="btn btn-danger">Eliminar Usuario</button>
+        <a href="{% url 'user_list' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

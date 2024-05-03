@@ -1,0 +1,43 @@
+{% extends 'encuestas/base.html' %}
+
+{% block title %} DISPONIBLES {% endblock %}
+
+{% block titulo %}
+<h3 class="text-center" style="font-size: 30px; color: #FFFFFF; text-shadow: 2px 2px 8px #000000; background-color: transparent; padding: 10px; border-radius: 8px;">Encuestas Disponibles</h3>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4 p-4 rounded" style="background-color:rgba(192, 192, 192, 0.5); box-shadow: 5px 5px 15px #888888; backdrop-filter: blur(5px);">
+
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <div class="card" style="background-color: rgba(192, 192, 192, 0.5); border: 1px solid #000000; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
+        <div class="card-body">
+          <table class="table table-hover">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col" style="border-top: none;">Nombre de la Encuesta</th>
+                <th scope="col" style="border-top: none;">Descripción</th>
+                <th scope="col" style="border-top: none;">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for encuesta in encuestas_disponibles %}
+              <tr>
+                <td>{{ encuesta.nombre }}</td>
+                <td>{{ encuesta.descripcion }}</td>
+                <td>
+                  <a href="{% url 'responder_encuesta' encuesta.id %}" class="enlace-icono">
+                    <i class="bi bi-file-earmark-play-fill"></i>
+                  </a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

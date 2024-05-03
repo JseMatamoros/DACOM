@@ -1,0 +1,56 @@
+{% extends 'encuestas/base.html' %}
+{% block title %}Mi Perfil{% endblock %}
+
+{% block content %}
+    {% load static %}
+
+    <div class="container mt-4 p-4 border border-dark rounded" style="background-color: #f8f9fa81;">
+        <h2 class="text-center mb-4">Perfil de Usuario y su productividad por campaña.</h2>
+
+        <div class="row align-items-stretch">
+            <div class="col-md-5">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="card-title">Información de Usuario</h3>
+                        <p class="card-text"><strong>Nombre de usuario:</strong> {{ user.username }}</p>
+                        <p class="card-text"><strong>Correo electrónico:</strong> {{ user.email }}</p>
+                        <p class="card-text"><strong>Grupo:</strong> {{ user.selected_group }}</p>
+                        <p class="card-text"><strong>Encuestas Respondidas:</strong> {{ cantidad_prospectos }}</p>
+                        {% if es_admin %}
+                            <p class="card-text"><strong>Privilegios:</strong> Administrador</p>
+                        {% else %}
+                            <p class="card-text"><strong>Privilegios:</strong> Usuario</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="card-title">Revisa tu actividad en la campaña actual</h3>
+                        <img src="{{ encuestas_respondidas_chart }}" alt="Visualización de preguntas respondidas" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Información Adicional</h3>
+                        <p class="card-text">Cantidad de preguntas respondidas en tu perfil: {{ cantidad_respuestas }}</p>
+                        <p class="card-text">Cantidad de encuestas realizadas: {{ cantidad_prospectos }}</p>
+                        <h4 class="card-title">Lista de prospectos relacionados:</h4>
+                        <ul class="list-group">
+                            {% for nombre in nombres_prospectos_relacionados %}
+                                <li class="list-group-item">{{ nombre }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

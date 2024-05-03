@@ -1,0 +1,52 @@
+{% extends 'encuestas/base.html' %}
+
+{% block title %} Crear Usuario {% endblock %}
+
+{% block titulo %}
+<h3 class="text-center" style="font-size: 30px; color: #eee4e4; text-shadow: 2px 2px 4px #000000; background-color: #343a40; padding: 10px; border-radius: 8px;">Creando un nuevo usuario</h3>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4 p-4 border border-dark rounded" style="background-color: #c0c0c0; box-shadow: 5px 5px 15px #888888;">
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label custom-bold-label text-md-right" for="{{ form.username.id_for_label }}">Nombre de Usuario:</label>            
+            <div class="col-md-9 m-1">
+                {{ form.username }}
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label custom-bold-label text-md-right" for="{{ form.email.id_for_label }}">Correo Electrónico:</label>            
+            <div class="col-md-9 m-1">
+                {{ form.email }}
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label custom-bold-label text-md-right" for="{{ form.password1.id_for_label }}">Contraseña:</label>            
+            <div class="col-md-9 m-1">
+                {{ form.password1 }}
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label custom-bold-label text-md-right" for="{{ form.password2.id_for_label }}">Confirmar Contraseña:</label>            
+            <div class="col-md-9 m-1">
+                {{ form.password2 }}
+            </div>
+        </div>
+        <!-- Agregar el campo de selección de grupo -->
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label custom-bold-label text-md-right" for="{{ form.group.id_for_label }}">Grupo:</label>            
+            <div class="col-md-9 m-1">
+                {{ form.selected_group_id }}
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-9 offset-md-3">
+                <button class="btn btn-primary mr-2 enviar-btn" type="submit">Sign up</button>
+                <a href="{% url 'user_list' %}" class="btn btn-secondary volver-btn">Volver</a>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

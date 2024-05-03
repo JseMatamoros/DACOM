@@ -1,0 +1,21 @@
+{% extends 'encuestas/base.html' %}
+
+{% block title %} CONFIRMAR ELIMINACIÓN DE OPCIONES {% endblock %}
+
+{% block content %}
+
+<h3>Confirmar Eliminación de Opciones</h3>
+
+<p>¿Estás seguro de que deseas eliminar las opciones seleccionadas?</p>
+
+<form method="post" action="{% url 'confirmar_eliminar_opcion' encuesta_id=pregunta.encuesta.id %}">
+
+  {% csrf_token %}
+  <input type="hidden" name="pregunta_id" value="{{ pregunta.id }}">
+  <input type="hidden" name="opciones_a_eliminar" value="{{ opciones_a_eliminar|join:',' }}">
+  <button type="submit" class="btn btn-danger">Sí, eliminar opciones</button>
+  <a class="btn btn-secondary" href="{% url 'editar_encuesta' pregunta.encuesta.id %}">Cancelar</a>
+</form>
+
+
+{% endblock %}

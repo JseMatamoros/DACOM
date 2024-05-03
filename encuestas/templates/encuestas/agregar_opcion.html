@@ -1,0 +1,49 @@
+{% extends 'encuestas/base.html' %}
+
+{% block title %} ALTERAR OPCIONES {% endblock %}
+
+{% block content %}
+<h3 class="text-center" style="font-size: 30px; color: #FFFFFF; text-shadow: 2px 2px 8px #000000; background-color: transparent; padding: 10px; border-radius: 8px;">Alterar Opciones</h3>
+<div class="container mt-4 p-4 rounded" style="background-color: rgba(192, 192, 192, 0.5); box-shadow: 5px 5px 15px #888888;">
+    <div class="card-body">
+        {% if pregunta %}
+<h4 class="text-center" style="font-size: 20px; color: #FFFFFF; text-shadow: 2px 2px 8px #000000; background-color: transparent; padding: 10px; border-radius: 8px;">Pregunta: {{ pregunta.texto }}</h4>
+{% endif %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {% if form.errors %}
+            <div class="alert alert-danger" style="background-color: rgba(192, 192, 192, 0.5); box-shadow: 5px 5px 15px #888888;">
+                {{ form.errors }}
+            </div>
+            {% endif %}
+            <button type="submit" class="btn btn-primary" style="background-color: rgba(192, 192, 192, 0.5); box-shadow: 5px 5px 15px #888888;">Agregar opción</button>
+        </form>
+    
+        <!-- Muestra las opciones de respuesta existentes -->
+        {% if pregunta.opciones.all %}
+        <div class="mt-4" style="background-color: rgba(192, 192, 192, 0.5); box-shadow: 5px 5px 15px #888888;">
+            <h3>Opciones de respuesta existentes:</h3>
+            <form method="post" action="{% url 'agregar_opcion' pregunta_id=pregunta.id %}">
+                {% csrf_token %}
+                <ul class="list-group">
+                    {% for opcion in pregunta.opciones.all %}
+                    <li class="list-group-item">
+                        <label class="form-check-label">
+                            <input type="checkbox" name="opciones_a_eliminar" value="{{ opcion.id }}" class="form-check-input">
+                            {{ opcion.texto }}
+                        </label>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <button type="submit" class="btn btn-danger mt-3">Eliminar opciones seleccionadas</button>
+            </form>
+        </div>
+        {% else %}
+        <p class="mt-4" style="background-color: rgba(192, 192, 192, 0.5); box-shadow: 5px 5px 15px #888888;">No hay opciones de respuesta existentes.</p>
+        {% endif %}
+        <a class="btn btn-secondary mt-3" href="{% url 'editar_encuesta' pregunta.encuesta.id %}" style="background-color: rgba(192, 192, 192, 0.5); box-shadow: 5px 5px 15px #888888;">Volver a editar encuesta</a>
+    </div>
+    
+</div>
+{% endblock %}

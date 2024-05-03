@@ -1,0 +1,32 @@
+{% extends "encuestas/base.html" %}
+
+{% block titulo %}
+  <h3 class="text-center" style="font-size: 30px;">Ingrese sus credenciales</h3>
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="login-box">
+          <form method="post">
+            {% csrf_token %}
+            <div id="usuario" class="form-group">
+              <label for="id_username">Nombre de usuario: </label>
+              {{ form.username }}
+            </div>
+            <div id="contrasena" class="form-group">
+              <label for="id_password">Contraseña: </label>
+              {{ form.password }}
+            </div>
+            <div class="text-center">
+              <button id="iniciar_sesion" type="submit" class="btn btn-primary">Iniciar sesión</button>
+              <a id="volver_encuesta" href="{% url 'encuestas_disponibles' %}" class="btn btn-dark">Volver</a>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

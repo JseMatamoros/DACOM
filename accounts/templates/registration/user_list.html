@@ -1,0 +1,51 @@
+{% extends 'encuestas/base.html' %}
+
+{% block title %} LISTA USUARIOS {% endblock %}
+
+{% block titulo %}
+<h3 class="text-center" style="font-size: 30px; color: #eee4e4; text-shadow: 2px 2px 4px #000000; background-color: #343a40; padding: 10px; border-radius: 8px;">Lista de Usuarios</h3>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4 p-4 border border-dark rounded" style="background-color: #c0c0c0; box-shadow: 5px 5px 15px #888888;">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card" style="background-color: #ffffff; border: 1px solid #000000; box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);">
+        <div class="card-body">
+          <table class="table table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col" style="border-top: none;">Nombre de Usuario</th>
+                <th scope="col" style="border-top: none;">Email</th>
+                <th scope="col" style="border-top: none;">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for user in users %}
+              <tr>
+                <td class="hover-effect">{{ user.username }}</td>
+                <td class="hover-effect">{{ user.email }}</td>
+                <td class="hover-effect">
+                  <!-- Enlace para ver detalle del usuario -->
+                  <a href="#" class="enlace-icono">
+                    <i class="bi bi-binoculars-fill"></i>
+                  </a>
+                  <!-- Enlace para editar el usuario -->
+                  <a href="#" class="enlace-icono">
+                    <i class="bi bi-pencil-fill"></i>
+                  </a>
+                  <!-- Enlace para eliminar el usuario -->
+                  <a href="{% url 'user_delete' pk=user.pk %}" class="enlace-icono">
+                    <i class="bi bi-trash3-fill"></i>
+                  </a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

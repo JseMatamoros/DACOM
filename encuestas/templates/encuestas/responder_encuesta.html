@@ -1,0 +1,55 @@
+{% extends 'encuestas/base.html' %}
+
+{% block title %} RESPONDER {% endblock %}
+
+{% block titulo %}
+<h3 class="text-center" style="font-size: 30px; color: #FFFFFF; text-shadow: 2px 2px 8px #000000; background-color: transparent; padding: 10px; border-radius: 8px;">Responda la siguiente encuesta:</h3>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4 p-4 rounded" style="background-color: rgba(0, 0, 0, 0.5); box-shadow: 5px 5px 15px #888888;">
+    <div class="container">
+        <h1 style="color: #000000;">{{ encuesta.nombre }}</h1>
+        <p style="color: #000000;">{{ encuesta.descripcion }}</p>
+        
+        <!-- Formulario para el prospecto -->
+        <form method="post">
+            {% csrf_token %}
+            {{ prospecto_form.as_p }}
+            <hr>
+            
+            <!-- Preguntas de la encuesta -->
+            {% for pregunta in preguntas %}
+            <div style="color: #000000; background-color: rgba(255, 255, 255, 0.8); padding: 10px; margin-bottom: 20px; border-radius: 8px;">
+                <p>{{ pregunta.texto }}</p>
+                {% if pregunta.tipo == 'seleccion_multiple' %}
+                <!-- Muestra casillas de verificación para opciones de respuesta -->
+                {% for opcion in pregunta.opciones.all %}
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="opcion_{{ pregunta.id }}" value="{{ opcion.id }}" id="opcion_{{ opcion.id }}">
+                    <label class="form-check-label" for="opcion_{{ opcion.id }}" style="color: #000000;">{{ opcion.texto }}</label>
+                </div>
+                {% endfor %}
+                {% elif pregunta.tipo == 'seleccion_unica' %}
+                <!-- Muestra una lista desplegable para opciones de respuesta -->
+                <select class="form-select" name="opcion_{{ pregunta.id }}" style="color: #000000; background-color: rgba(255, 255, 255, 0.8);">
+                    {% for opcion in pregunta.opciones.all %}
+                    <option value="{{ opcion.id }}">{{ opcion.texto }}</option>
+                    {% endfor %}
+                </select>
+                {% elif pregunta.tipo == 'texto_libre' %}
+                <!-- Muestra un campo de texto para respuestas de texto libre -->
+                <input class="form-control" type="text" name="respuesta_{{ pregunta.id }}" placeholder="Escriba su respuesta aquí..." style="color: #000000; background-color: rgba(255, 255, 255, 0.8);">
+                {% endif %}
+            </div>
+            {% endfor %}
+            
+            <!-- Agrega un botón de envío para procesar las respuestas -->
+            <div class="d-flex justify-content-center mt-3">
+                <button id="enviar_encuesta" type="submit" class="btn btn-primary mr-2 enviar-btn">Enviar respuestas</button>
+                <a id="volver_encuesta" href="{% url 'encuestas_disponibles' %}" class="btn btn-secondary volver-btn">Volver</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

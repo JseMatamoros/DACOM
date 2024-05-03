@@ -1,0 +1,31 @@
+{% extends 'encuestas/base.html' %}
+
+{% block title %} CREAR PREGUNTAS {% endblock %}
+
+{% block titulo %}
+<h3 class="text-center" style="font-size: 30px; color: #FFFFFF; text-shadow: 2px 2px 8px #000000; background-color: transparent; padding: 10px; border-radius: 8px;">Crear Preguntas para "{{ encuesta.nombre }}"</h3>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4 p-4 rounded" style="background-color: rgba(192, 192, 192, 0.5); box-shadow: 5px 5px 15px #888888;">
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label custom-bold-label text-md-right" for="{{ form.texto.id_for_label }}">Texto:</label>
+            <div class="col-md-9 m-1">
+                {{ form.texto }}
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label custom-bold-label text-md-right" for="{{ form.tipo.id_for_label }}">Tipo:</label>
+            <div class="col-md-9 m-1">
+                {{ form.tipo }}
+            </div>
+        </div>
+        <div class="d-flex justify-content-center mt-3">
+            <button id="enviar_encuesta" class="btn btn-primary mr-2 enviar-btn" type="submit">Agregar Pregunta</button>
+            <a id="volver_encuesta" href="{% url 'editar_encuesta' encuesta_id=encuesta.id %}" class="btn btn-secondary volver-btn">Ir a editar opciones</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

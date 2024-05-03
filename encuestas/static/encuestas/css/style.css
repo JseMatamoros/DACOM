@@ -1,0 +1,236 @@
+/* Estilos generales */
+/* ROJO INACAP */
+:root {
+    --blue: #007bff;
+    --indigo: #6610f2;
+    --purple: #6f42c1;
+    --pink: #e83e8c;
+    --red: #ce382b;
+    --orange: #fd7e14;
+    --yellow: #ffc107;
+    --green: #28a745;
+    --teal: #20c997;
+    --cyan: #17a2b8;
+    --white: #fff;
+    --gray: #6c757d;
+    --gray-dark: #343a40;
+    --primary: #007bff;
+    --secondary: #6c757d;
+    --success: #28a745;
+    --info: #17a2b8;
+    --warning: #ffc107;
+    --danger: #dc3545;
+    --light: #f8f9fa;
+    --dark: #343a40;
+}
+.body-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image: url('https://portales.inacap.cl/Assets/admision/admision-2024/01_Header_2400x750.jpg'); /* Asegúrate de usar la ruta correcta a tu imagen */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+
+
+body {
+    margin-bottom: 200px;
+}
+body, p, h1, h2, h3, h4, h5, h6 {
+    /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
+    /* font-family: "Space Grotesk"; */
+    font-family: apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 1rem;
+    /* line-height: 1.42857143; */
+    color: #333;
+    background-color: #fff;
+}
+#logo {
+    size: 23px;
+}
+
+/* Estilos para la barra de navegación */
+.navbar {
+    padding: 0 15px;
+}
+
+.navbar-brand img {
+    max-height: 50px;
+}
+.navbar {
+    background-color: #fff; /* Fondo blanco */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    border-bottom: 25px solid #d80016; /* Franja roja de 3px de grosor */
+    position: relative; /* Agregado para posicionar correctamente la franja roja */
+}
+
+.navbar-brand img {
+    max-height: 40px;
+}
+
+.navbar-toggler-icon {
+    background-color: #ff0000; /* Color del ícono del botón de alternancia */
+}
+
+.navbar-nav .nav-link {
+    color: #333; /* Color del texto del enlace */
+    transition: color 0.2s ease-in-out;
+}
+
+.navbar-nav .nav-link {
+    text-decoration: none;
+    color: #000000; /* Reemplaza "your-desired-color" con el color que prefieras */
+    border-bottom: 1px solid transparent; /* Línea subrayada transparente por defecto */
+    transition: border-bottom 0.2s; /* Transición suave para la línea subrayada */
+}
+
+.navbar-nav .nav-link:hover {
+    color: #000000; /* Cambio de color al pasar el mouse */
+    border-bottom: 3px solid #ff0000; /* Aparece la línea subrayada al pasar el mouse */
+}
+
+.navbar-nav .dropdown-menu {
+    border: 1px solid rgba(24, 23, 23, 0.1); /* Borde sutil para menús desplegables */
+}
+
+.navbar-nav .dropdown-menu a {
+    color: #000000; /* Color del texto en menús desplegables */
+}
+
+.navbar-nav .dropdown-menu a:hover {
+    color: #28a745; /* Cambio de color al pasar el mouse en menús desplegables */
+    font-weight: bold; /* Cambia el peso de la fuente a negrita al pasar el mouse en menús desplegables */
+}
+
+.navbar-nav .nav-item.active {
+    background-color: #000000; /* Fondo del enlace activo */
+}
+
+.navbar-nav .nav-item.active .nav-link {
+    color: #fff; /* Color del texto del enlace activo */
+}
+
+.navbar-nav .nav-item.dropdown:hover .nav-link {
+    color: #000000; /* Cambio de color al pasar el mouse en menús desplegables */
+}
+
+.navbar-nav .nav-item.dropdown:hover .dropdown-menu {
+    background-color: #fff; /* Fondo del menú desplegable al pasar el mouse */
+}
+
+.navbar-collapse {
+    justify-content: flex-end; /* Alinear elementos a la derecha */
+}
+
+/* Estilos para los elementos de menú desplegable */
+.dropdown-item {
+    color: #333;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: #f8f9fa;
+    color: #ff0000;
+    font-weight: bold;
+}
+
+/* Ajusta según sea necesario para centrar verticalmente */
+/* .login-container {
+    margin-top: 100px; 
+} */
+
+/* login */
+
+#usuario,#contrasena {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px; /* Ajusta según sea necesario */
+}
+
+#usuario,#contrasena,input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+/* CSS para el footer */
+#footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000; /* Ajusta según sea necesario */
+}
+#footer-rojo, #admision {
+    background-color: #d80016;
+}
+
+
+#enviar_encuesta, #volver_encuesta, #iniciar_sesion {
+    width: 200px; /* Establece el mismo ancho para ambos botones */
+    margin: 8px;
+}
+
+
+/* iconos */
+
+/* Estilos para los enlaces con iconos */
+.enlace-icono i {
+    font-size: 24px; /* Ajusta el tamaño según tus necesidades */
+    color: #008000; /* Cambia este color al que prefieras para el estado normal */
+    transition: color 0.2s ease-in-out; /* Transición más rápida de color */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Efecto de sombra opcional */
+}
+
+/* Cambio de color al pasar el mouse (hover) */
+.enlace-icono:hover i {
+    color: #d80016; /* Cambia este color al que prefieras para el estado hover */
+}
+
+/* pagina principal */
+
+.hover-effect:hover {
+    box-shadow: 0 0 10px #888888;
+  }
+
+
+/* botones de responder encuesta::after */
+
+.enviar-btn {
+    transition: background-color 0.2s, border-color 0.4s, box-shadow 0.1s; /* Ajusta el tiempo del efecto */
+}
+
+.enviar-btn:hover {
+    background-color: #218838; /* Cambia el color al pasar el mouse */
+    border-color: #1e7e34; /* Cambia el color del borde al pasar el mouse */
+    box-shadow: 0 0 11px rgba(33, 136, 56, 0.7); /* Agrega sombra al pasar el mouse */
+    border-radius: 10px;
+}
+
+.volver-btn {
+    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s; /* Ajusta el tiempo del efecto */
+}
+
+.volver-btn:hover {
+    background-color: #6c757d; /* Cambia el color al pasar el mouse */
+    border-color: #5a6268; /* Cambia el color del borde al pasar el mouse */
+    box-shadow: 0 0 11px rgba(108, 117, 125, 0.7); /* Agrega sombra al pasar el mouse */
+    border-radius: 10px;
+}
+
+/* estilos de crear encuesta */
+
+.custom-bold-label {
+    font-weight: bold;
+}
+/* Estilo para los labels en el formulario */
+.encuesta-label {
+    font-size: 18px;
+    color: #eee4e4;
+    text-shadow: 2px 2px 4px #000000;
+}

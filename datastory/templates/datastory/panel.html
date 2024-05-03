@@ -1,0 +1,83 @@
+{% extends 'datastory/base.html' %}
+
+{% block title %} DASHBOARD {% endblock %}
+
+{% block titulo %}
+<h3 class="text-center" id="titulo-dashboard">Estadística rápida</h3>
+<h1 class="text-center">Encuesta: {{ encuesta.nombre }}</h1>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Contenido Principal -->
+        <div class="col-md-9">
+
+            {% if not preguntas_con_graficos %}
+                <div class="alert alert-warning" role="alert">
+                    <p>No hay respuestas asociadas a esta encuesta.</p>
+                </div>
+            {% endif %}
+            {% for pregunta, grafico, coincidentes, tipo_pregunta in preguntas_con_graficos %}
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="card bg-light bg-opacity-75 mb-3">
+                        <div class="card-header">
+                            <!-- Mostrar el texto de la pregunta para todos los gráficos -->
+                            <h4 class="text-center">{{ pregunta }}</h4>
+                        </div>
+                        <div class="card-body text-center">
+                            {% if grafico %}
+                            <img src="{{ grafico }}" alt="{{ pregunta }}" class="img-fluid">
+                            <!-- Agregar leyenda de grupos debajo del gráfico -->
+                            <div class="mt-3">
+                                {% if coincidentes %}
+                                    {% for group, color in coincidentes.items %}
+                                        <span class="badge bg-primary">{{ group }}</span>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+
+                            {% else %}
+                            <p>No hay suficientes respuestas para mostrar el gráfico.</p>
+                            {% endif %}
+                            <!-- Mostrar la lista desplegable de respuestas coincidentes solo para preguntas de tipo texto_libre -->
+                            {% if tipo_pregunta == 'texto_libre' and coincidentes %}
+                            <h5 class="mt-3">Respuestas coincidentes:</h5>
+                            <select class="form-select" aria-label="Respuestas coincidentes">
+                                {% for group, respuestas in coincidentes.items %}
+                                <optgroup label="Grupo {{ group }}">
+                                    {% for respuesta in respuestas %}
+                                    <option value="{{ respuesta }}">{{ respuesta }}</option>
+                                    {% endfor %}
+                                </optgroup>
+                                {% endfor %}
+                            </select>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Sidebar a la Derecha -->
+        <div class="col-md-3">
+            <div class="sticky-top" style="top: 20px;">
+                <!-- Botones con Iconos -->
+                <div class="nav flex-column">
+                    <a href="{% url 'lista_encuestas' %}" class="btn btn-primary mb-2">
+                        <i class="bi bi-house-door"></i> Inicio
+                    </a>
+                    <a href="#" class="btn btn-secondary mb-2">
+                        <i class="bi bi-file-earmark-bar-graph"></i> Reportes
+                    </a>
+                    <a href="#" class="btn btn-success mb-2">
+                        <i class="bi bi-gear"></i> Configuración
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
